@@ -1,0 +1,96 @@
+Atos
+====
+
+Ruby on Rails gateway for SIPS/ATOS french online payments API
+
+Usage
+=====
+1. Drop the files given by your bank in RAILS_ROOT/lib, so your lib folder should look like this :
+
+  /lib
+    /atos
+     /bin
+       /request
+       /request_2.4.18_2.96
+       ....
+       
+     /param
+       /certif.fr.014295303911111
+       /parmcom.014295303911111
+       /parmcom.*
+       /pathfile
+     
+   
+2. From your controller, call the API like this :
+
+  @request = Atos.request(
+    :merchant_id=>'014295303911111',
+    :amount=>'1500', 
+    :customer_id=>YOUR_CUSTOMER_ID,
+    :automatic_response_url=>"http://YOUR_SITE.com/ANY/LISTENING/URL/YOU/WANT",
+    :normal_return_url=>"http://YOUR_SITE.com/NORMAL/FALLBACK/URL",
+    :cancel_return_url=>"http://YOUR_SITE.com/CANCEL/URL"
+  )
+
+3. And then show the @request in your view, it's an HTML form 
+
+---------- Let the customer pay you, then the bank respond -------------------------
+
+4. Ok, now, you can catch the DATA parameter in response by listening to the 'automatic_response_url' you gave above
+
+  response_datas = params[:DATA]
+  response = Atos.response(response_datas)
+
+5. Finally, you get a hash in 'response', that follows the API specs :
+
+  response = { 
+    :code               
+    :error               
+    :merchant_id           
+    :merchant_country       
+    :amount                 
+    :transaction_id         
+    :payment_means          
+    :transmission_date      
+    :payment_time           
+    :payment_date          
+    :response_code         
+    :payment_certificate    
+    :authorisation_id       
+    :currency_code          
+    :card_number          
+    :cvv_flag              
+    :cvv_response_code    
+    :bank_response_code   
+    :complementary_code    
+    :complementary_info     
+    :return_context       
+    :caddie               
+    :receipt_complement     
+    :merchant_language    
+    :language              
+    :customer_id          
+    :order_id             
+    :customer_email        
+    :customer_ip_address   
+    :capture_day           
+    :capture_mode          
+    :data                 
+  }
+      
+      
+Notes
+=====
+merchant_id, amount, customer_id, automatic_response_url, normal_return_url and cancel_return_url are required to make a request, but you can freely add others (shopping cart, order id, customer email...), according to the API docs.
+Default language is set to 'fr' and currency to 'Euro', simply pass your own 'locale/currency' in the request to override.
+There's no configuration files, but strictly RESPECT PATH NAMES of the Atos files in the lib directory. (Yeah, conventions over configuration !).
+Always check out the '/lib/atos/param/pathfile', and fill requested paths according to your app absolute location on the server
+
+Compatibility
+=============
+Tested in production with Rails 2.3.5, but should work with Rails 3.0  
+
+Bugs
+=====
+Surprisingly, you can't just get the response with Atos.response(params[:DATA]), you have to assign params[:DATA] in a new variable, then pass it to the Atos.response() method. If someone could explain me why, I'd be curious to know more about it...
+
