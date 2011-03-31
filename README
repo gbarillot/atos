@@ -81,10 +81,19 @@ Usage
       
 Notes
 =====
-merchant_id, amount, customer_id, automatic_response_url, normal_return_url and cancel_return_url are required to make a request, but you can freely add others (shopping cart, order id, customer email...), according to the API docs.
-Default language is set to 'fr' and currency to 'Euro', simply pass your own 'locale/currency' in the request to override.
-There's no configuration files, but strictly RESPECT PATH NAMES of the Atos files in the lib directory. (Yeah, conventions over configuration !).
-Always check out the '/lib/atos/param/pathfile', and fill requested paths according to your app absolute location on the server
+- merchant_id, amount, customer_id, automatic_response_url, normal_return_url and cancel_return_url 
+  are required to make a request, but you can freely add others (shopping cart, customer email...), 
+  according to the API docs.
+  
+- Default language is set to 'fr' and currency to 'Euro', simply pass your own 'locale/currency' in 
+  the request to override.
+
+- It's conventions over configuration here, so strictly RESPECT PATH NAMES of the Atos files in the lib directory.
+
+- Don't forget to check out the '/lib/atos/param/pathfile', and fill requested paths according to your 
+  app absolute location on the server
+ 
+- the '014295303911111' merchant_id I use all the way here is the test merchant_id, obviously, use you own merchant_id
 
 Compatibility
 =============
@@ -92,5 +101,7 @@ Tested in production with Rails 2.3.5, but should work with Rails 3.0
 
 Bugs
 =====
-Surprisingly, you can't just get the response with Atos.response(params[:DATA]), you have to assign params[:DATA] in a new variable, then pass it to the Atos.response() method. If someone could explain me why, I'd be curious to know more about it...
+Using Ruby 1.8.7/Rails 2.3.5 you can't just get the response with Atos.response(params[:DATA]), you have to assign 
+params[:DATA] in a new variable, then pass it to the Atos.response() method. If someone could explain me why, 
+I'd be curious to know more about it...
 
