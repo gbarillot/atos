@@ -90,10 +90,13 @@ Notes
 
 - It's conventions over configuration here, so strictly RESPECT PATH NAMES of the Atos files in the lib directory.
 
-- Don't forget to check out the '/lib/atos/param/pathfile', and fill requested paths according to your 
+- Don't forget to check '/lib/atos/param/pathfile', and fill requested paths according to your 
   app absolute location on the server
  
-- the '014295303911111' merchant_id I use all the way here is the test merchant_id, obviously, use you own merchant_id
+- Don't forget to drop the credit card logos in a public dir, then fill this dir absolute location on the server
+  in the '/lib/atos/param/pathfile' file
+  
+- The '014295303911111' merchant_id I use all the way here is the test merchant_id, obviously, use you own merchant_id
 
 Compatibility
 =============
