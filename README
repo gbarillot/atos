@@ -23,7 +23,7 @@ Usage
    
 2. From your controller, call the API like this :
 
-  @request = Atos.request(
+  @request = Atos.new.request(
     :merchant_id=>'014295303911111',
     :amount=>'1500', 
     :customer_id=>YOUR_CUSTOMER_ID,
@@ -32,14 +32,13 @@ Usage
     :cancel_return_url=>'http://YOUR_SITE.com/CANCEL/URL'
   )
 
-3. And then show the @request in your view, it's an HTML form 
+3. And then show the @request in your view (it's an HTML form)
 
 ---------- Let the customer pay you, then the bank respond -------------------------
 
-4. Ok, now, you can catch the DATA parameter in response by listening to the 'automatic_response_url' you gave above
+4. Now, you can catch the DATA parameter in response by listening to the 'automatic_response_url' you gave above
 
-  response_datas = params[:DATA]
-  response = Atos.response(response_datas)
+  response = Atos.new.response(params[:DATA])
 
 5. Finally, you get a hash in 'response', that follows the API specs :
 
@@ -82,15 +81,34 @@ Usage
 Notes
 =====
 - merchant_id, amount, customer_id, automatic_response_url, normal_return_url and cancel_return_url 
-  are required to make a request, but you can freely add others (shopping cart, customer email...), 
+  are required to push a request, but you can freely add others (shopping cart, customer email...), 
   according to the API docs.
   
 - Default language is set to 'fr' and currency to 'Euro', simply pass your own 'locale/currency' in 
   the request to override.
 
-- It's conventions over configuration here, so strictly RESPECT PATH NAMES of the Atos files in the lib directory.
+- I prefer conventions over configuration, but you can also override with your own path dirs while 
+  instanciating the Atos class. You just add one step to the shortand way :
+  
+  @request = Atos.new(
+    :root_path=>'/where',
+    :request_path=>'/where/ever'
+    :response_path=>'/where/ever/you',
+    :pathfile_path=>'/where/ever/you/want'
+  )
+  
+  ...And then...
+  
+  @request.request(
+    :merchant_id=>'014295303911111',
+    :amount=>'1500', 
+    :customer_id=>YOUR_CUSTOMER_ID,
+    :automatic_response_url=>'http://YOUR_SITE.com/ANY/LISTENING/URL/YOU/WANT',
+    :normal_return_url=>'http://YOUR_SITE.com/NORMAL/FALLBACK/URL',
+    :cancel_return_url=>'http://YOUR_SITE.com/CANCEL/URL'
+  )
 
-- Don't forget to check '/lib/atos/param/pathfile', and fill requested paths according to your 
+- Don't forget to check at the 'pathfile' Atos file, and fill requested paths according to your 
   app absolute location on the server
  
 - Don't forget to drop the credit card logos in a public dir, then fill this dir absolute location on the server
@@ -101,10 +119,3 @@ Notes
 Compatibility
 =============
 Tested in production with Rails 2.3.5, but should work with Rails 3.0  
-
-Bugs
-=====
-Using Ruby 1.8.7/Rails 2.3.5 you can't just get the response with Atos.response(params[:DATA]), you have to assign 
-params[:DATA] in a new variable, then pass it to the Atos.response() method. If someone could explain me why, 
-I'd be curious to know more about it...
-
