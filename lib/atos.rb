@@ -1,4 +1,4 @@
-'require check_for_errors.rb'
+'require exception_handler.rb'
 
 class Atos
 
