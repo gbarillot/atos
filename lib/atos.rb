@@ -19,7 +19,7 @@ class Atos
   # Call the request binary 
   def request(datas)
   
-    CheckForErrors.before(datas)
+    ExceptionHandler.before(datas)
         
     # Default parameters if nothing given
     datas[:merchant_country] ||= "fr"                # => French shop
@@ -32,7 +32,7 @@ class Atos
       args << "#{key.to_s}=#{value} "
     end        
     
-    response_array = CheckForErrors.on_launch(`#{self.request_path} #{args}`)
+    response_array = ExceptionHandler.on_launch(`#{self.request_path} #{args}`)
 
     # If everything goes fine, should now respond an HTML form 
     response_array[3]
@@ -42,7 +42,7 @@ class Atos
   # Decrypt bank response, then return a hash
   def response(datas)
 
-    response_array = CheckForErrors.on_launch(`#{self.response_path} pathfile=#{self.pathfile_path} message=#{datas}`)
+    response_array = ExceptionHandler.on_launch(`#{self.response_path} pathfile=#{self.pathfile_path} message=#{datas}`)
 
     { 
       :code                   => response_array[1],
