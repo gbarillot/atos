@@ -25,7 +25,7 @@ Usage
     @request = Atos.new.request(
       :merchant_id            => '014295303911111',
       :amount                 => '1500',
-      :customer_id            => YOUR_CUSTOMER_ID,
+      :customer_id            => 'YOUR_CUSTOMER_ID',
       :automatic_response_url => 'http://YOUR_SITE.com/ANY/LISTENING/URL/YOU/WANT',
       :normal_return_url      => 'http://YOUR_SITE.com/NORMAL/RETURN/URL',
       :cancel_return_url      => 'http://YOUR_SITE.com/CANCEL/URL'
@@ -42,7 +42,7 @@ Usage
 
 5. Finally, you get a hash in 'response', that follows the API specs :
 ```
-    response = {
+    {
       :code
       :error
       :merchant_id
@@ -93,7 +93,7 @@ Notes
 ```
     @request = Atos.new(
       :root_path     => '/where',
-      :request_path  => '/where/ever'
+      :request_path  => '/where/ever',
       :response_path => '/where/ever/you',
       :pathfile_path => '/where/ever/you/want'
     )
