@@ -23,12 +23,12 @@ Usage
 2. From your controller, call the API like this :
 ```
     @request = Atos.new.request(
-      :merchant_id=>'014295303911111',
-      :amount=>'1500',
-      :customer_id=>YOUR_CUSTOMER_ID,
-      :automatic_response_url=>'http://YOUR_SITE.com/ANY/LISTENING/URL/YOU/WANT',
-      :normal_return_url=>'http://YOUR_SITE.com/NORMAL/RETURN/URL',
-      :cancel_return_url=>'http://YOUR_SITE.com/CANCEL/URL'
+      :merchant_id            => '014295303911111',
+      :amount                 => '1500',
+      :customer_id            => YOUR_CUSTOMER_ID,
+      :automatic_response_url => 'http://YOUR_SITE.com/ANY/LISTENING/URL/YOU/WANT',
+      :normal_return_url      => 'http://YOUR_SITE.com/NORMAL/RETURN/URL',
+      :cancel_return_url      => 'http://YOUR_SITE.com/CANCEL/URL'
     )
 ```
 3. And then show the @request in your view (it's an HTML form)
