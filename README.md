@@ -12,7 +12,7 @@ then run bundle install
 
 Usage
 ---
-1. Create an Atos directory inside your /lib and drop the files given by your bank into it, so it should look like this :
+1.Create an Atos directory inside your /lib and drop the files given by your bank into it, so it should look like this :
 
 ```
 /app
@@ -31,7 +31,7 @@ Usage
       pathfile
 ```
 
-2. To perform a payment, instanciate a request :
+2.To perform a payment, instanciate a request :
 
 ```
 @request = Atos.new.request(
@@ -44,17 +44,17 @@ Usage
 )
 ```
 
-3. You can now show the @request content in your view (it's an HTML form)
+3.You can now show the @request content in your view (it's an HTML form)
 
 ----- Let the customer pay on the bank platform, then listen to its response ----
 
-4. Now, you can catch the DATA parameter in response by listening to the 'automatic\_response\_url' you gave above (not a tipo, DATA is upcase)
+4.Now, you can catch the DATA parameter in response by listening to the 'automatic\_response\_url' you gave above (not a tipo, DATA is upcase)
 
 ```
 response = Atos.new.response(params[:DATA])
 ```
 
-5. Finally, you get a hash in 'response', that follows the API specs :
+5.Finally, you get a hash in 'response', that follows the API specs :
 ```
 {
   :code
@@ -135,7 +135,7 @@ Above those required parameters, you can freely add any other parameter that fol
   
 * Don't forget to check at the 'pathfile' Atos file, and fill requested paths according to your app _absolute_ location on the server
 
-* Drop the credit card logos in a public dir, then fill this directory's absolute location on the server
+* Drop the credit card logos in a public dir, then fill this directory's _absolute_ location on the server
   in the '/lib/atos/param/pathfile' file
 
 * The '014295303911111' merchant\_id I use all the way here is the test merchant\_id, obviously, use you own.
