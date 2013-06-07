@@ -1,8 +1,13 @@
 require 'test_helper'
 
 class AtosTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  def setup
+    @atos = Atos.new
+  end
+
+  test "request: wrong arguments" do
+    assert_raise RuntimeError do
+      @atos.request({})
+    end
   end
 end
