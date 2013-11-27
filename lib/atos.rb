@@ -9,11 +9,11 @@ class Atos
     args.empty? ? paths = {} : paths = args.first
     
     # You may override those default paths on Class instanciation 
-    paths[:root_path]     ? @root_path     = paths[:root_path]     : @root_path     = "#{Rails.root}/lib/atos"
-    paths[:request_path]  ? @request_path  = paths[:request_path]  : @request_path  = "#{self.root_path}/bin/request"
-    paths[:response_path] ? @response_path = paths[:response_path] : @response_path = "#{self.root_path}/bin/response"
-    paths[:pathfile_path] ? @pathfile_path = paths[:pathfile_path] : @pathfile_path = "#{self.root_path}/param/pathfile"  
-
+    @root_path      = paths[:root_path] || "#{Rails.root}/lib/atos"
+    @request_path   = paths[:request_path] || "#{self.root_path}/bin/request"
+    @response_path  = paths[:response_path] || "#{self.root_path}/bin/response"
+    @pathfile_path   = paths[:pathfile_path] || "#{self.root_path}/param/pathfile"
+    
   end
       
   # Call the request binary 
@@ -29,7 +29,7 @@ class Atos
          
     args = ''
     datas.each do |key, value|
-      args << "#{key.to_s}=#{value} "
+      args << "#{key.to_s}=\"#{value}\" "
     end        
     
     response_array = ExceptionHandler.on_launch(`#{self.request_path} #{args}`)
