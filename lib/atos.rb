@@ -29,7 +29,7 @@ class Atos
          
     args = ''
     datas.each do |key, value|
-      args << "#{key.to_s}=\"#{value}\" "
+      args << "'#{key.to_s}=#{value}'"
     end        
     
     response_array = ExceptionHandler.on_launch(`#{self.request_path} #{args}`)
