@@ -18,19 +18,9 @@ class Atos
       
   # Call the request binary using request params
   def request(datas)
-  
+    
     ExceptionHandler.validate_request_params(datas)
-        
-    # Default parameters if nothing given
-    datas[:merchant_country] ||= "fr"                # => French shop
-    datas[:language]         ||= "fr"                # => French locale
-    datas[:currency_code]    ||= "978"               # => Euro
-    datas[:pathfile]         ||= "#{@pathfile_path}" # => Path to the Atos "pathfile"
-         
-    args = ''
-    datas.each do |key, value|
-      args << "'#{key.to_s}=#{value}' "
-    end        
+    args = build_args(datas)     
 
     ExceptionHandler.validate_binary_output(`#{@request_path} #{args}`)    
   end
@@ -76,5 +66,21 @@ class Atos
     }      
     
   end    
+
+private
+  def build_args(datas)
+    # Default parameters if nothing given
+    datas[:merchant_country] ||= "fr"                # => French shop
+    datas[:language]         ||= "fr"                # => French locale
+    datas[:currency_code]    ||= "978"               # => Euro
+    datas[:pathfile]         ||= "#{@pathfile_path}" # => Path to the Atos "pathfile"
+         
+    args = ''
+    datas.each do |key, value|
+      args << "'#{key.to_s}=#{value}' "
+    end  
+
+    return args 
+  end
 
 end
