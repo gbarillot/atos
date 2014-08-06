@@ -80,7 +80,7 @@ private
       args << "'#{key.to_s}=#{value}' "
     end  
 
-    return args 
+    return args.rstrip
   end
 
 end

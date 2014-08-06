@@ -37,7 +37,7 @@ class AtosTest < ActiveSupport::TestCase
   test "Params by default are set to fr/fr/Euro" do
     atos = Atos.new
 
-    assert_equal atos.send(:build_args, {}), "'merchant_country=fr' 'language=fr' 'currency_code=978' 'pathfile=/lib/atos/param/pathfile' "
+    assert_equal atos.send(:build_args, {}), "'merchant_country=fr' 'language=fr' 'currency_code=978' 'pathfile=/lib/atos/param/pathfile'"
   end
 
   test "Params by default are overridable" do
@@ -51,6 +51,6 @@ class AtosTest < ActiveSupport::TestCase
       :cancel_return_url => 'http://YOUR_SITE.com/CANCEL/URL'
     }
 
-    assert_equal atos.send(:build_args, params), "'merchant_id=014295303911111' 'amount=1500' 'customer_id=123456' 'automatic_response_url=http://YOUR_SITE.com/ANY/LISTENING/URL/YOU/WANT' 'normal_return_url=http://YOUR_SITE.com/NORMAL/FALLBACK/URL' 'cancel_return_url=http://YOUR_SITE.com/CANCEL/URL' 'merchant_country=fr' 'language=fr' 'currency_code=978' 'pathfile=/lib/atos/param/pathfile' "
+    assert_equal atos.send(:build_args, params), "'merchant_id=014295303911111' 'amount=1500' 'customer_id=123456' 'automatic_response_url=http://YOUR_SITE.com/ANY/LISTENING/URL/YOU/WANT' 'normal_return_url=http://YOUR_SITE.com/NORMAL/FALLBACK/URL' 'cancel_return_url=http://YOUR_SITE.com/CANCEL/URL' 'merchant_country=fr' 'language=fr' 'currency_code=978' 'pathfile=/lib/atos/param/pathfile'"
   end
 end
