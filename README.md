@@ -1,6 +1,8 @@
 Atos, a Ruby on Rails gateway for SIPS/ATOS french online payments API
 ===
 
+[![Build Status](https://travis-ci.org/gbarillot/atos.png)](https://travis-ci.org/gbarillot/atos)
+
 Installation
 ---
 As usual, add 
