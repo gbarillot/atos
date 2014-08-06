@@ -1,7 +1,7 @@
 class ExceptionHandler < StandardError
   
   # Minimum required parameters
-  def self.before(datas)
+  def self.validate_request_params(datas)
   
     required_params = [
       'merchant_id',
@@ -19,7 +19,7 @@ class ExceptionHandler < StandardError
   end
   
   # Check if the request is ok
-  def self.on_launch(datas)
+  def self.validate_binary_ouput(datas)
     
     response_array = datas.split("!")
     
@@ -28,10 +28,10 @@ class ExceptionHandler < StandardError
       # No response at all from API
       raise "Atos plugin error : binary file does not respond ! Check your 'request' binary path, default is 'Rails.root/lib/atos/bin'"
     when "0"      
-      # API respond 'ok', return the content
-      response_array
+      # API responds 'ok', return the content
+      response_array[3]
     else
-      # API binary respond an error, formated in an HTML table. Let's strip tags before showing the error message
+      # API binary responds an error, formated in an HTML table. Let's strip tags before showing the error message
       raise "Atos API binary file outputs : #{response_array[2].gsub(/<\/?[^>]*>/, '')}" 
     end
     

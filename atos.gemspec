@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.files = Dir["MIT-LICENSE", "README.md", "Gemfile", "lib/**/*.rb", 'test/**/*.rb']
   s.test_files = Dir.glob("test/*_test.rb")
   s.require_paths = ["lib"]
+  
   s.add_dependency 'rails'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'activesupport', '>=3.2.13'
