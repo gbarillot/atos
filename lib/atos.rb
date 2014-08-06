@@ -10,13 +10,13 @@ class Atos
     
     # You may override those default paths on Class instanciation 
     @root_path      = paths[:root_path] || "#{Rails.root}/lib/atos"
-    @request_path   = paths[:request_path] || "#{self.root_path}/bin/request"
-    @response_path  = paths[:response_path] || "#{self.root_path}/bin/response"
-    @pathfile_path  = paths[:pathfile_path] || "#{self.root_path}/param/pathfile"
+    @request_path   = paths[:request_path] || "#{@root_path}/bin/request"
+    @response_path  = paths[:response_path] || "#{@root_path}/bin/response"
+    @pathfile_path  = paths[:pathfile_path] || "#{@root_path}/param/pathfile"
     
   end
       
-  # Call the request binary 
+  # Call the request binary using request params
   def request(datas)
   
     ExceptionHandler.validate_request_params(datas)
@@ -32,13 +32,13 @@ class Atos
       args << "'#{key.to_s}=#{value}' "
     end        
 
-    ExceptionHandler.validate_binary_output(`#{self.request_path} #{args}`)    
+    ExceptionHandler.validate_binary_output(`#{@request_path} #{args}`)    
   end
 
-  # Decrypt bank response, then return a hash
+  # Call the response binary using bank response
   def response(datas)
 
-    response = ExceptionHandler.validate_binary_output(`#{self.response_path} pathfile=#{self.pathfile_path} message=#{datas}`)
+    response = ExceptionHandler.validate_binary_output(`#{@response_path} pathfile=#{@pathfile_path} message=#{datas}`)
 
     { 
       :code                   => response[1],

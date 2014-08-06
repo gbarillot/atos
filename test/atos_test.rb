@@ -10,4 +10,9 @@ class AtosTest < ActiveSupport::TestCase
       @atos.request({})
     end
   end
+
+  test "Paths should be valids" do
+    raise @atos.request_path.inspect
+  end
+
 end
