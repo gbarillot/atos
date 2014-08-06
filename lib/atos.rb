@@ -32,13 +32,13 @@ class Atos
       args << "'#{key.to_s}=#{value}' "
     end        
 
-    ExceptionHandler.validate_binary_ouput(`#{self.request_path} #{args}`)    
+    ExceptionHandler.validate_binary_output(`#{self.request_path} #{args}`)    
   end
 
   # Decrypt bank response, then return a hash
   def response(datas)
 
-    response = ExceptionHandler.validate_binary_ouput(`#{self.response_path} pathfile=#{self.pathfile_path} message=#{datas}`)
+    response = ExceptionHandler.validate_binary_output(`#{self.response_path} pathfile=#{self.pathfile_path} message=#{datas}`)
 
     { 
       :code                   => response[1],

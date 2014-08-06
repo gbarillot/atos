@@ -19,7 +19,7 @@ class ExceptionHandler < StandardError
   end
   
   # Check if the request is ok
-  def self.validate_binary_ouput(datas)
+  def self.validate_binary_output(datas)
     
     response_array = datas.split("!")
     
