@@ -141,4 +141,4 @@ Above those required parameters, you can freely add any other parameter that fol
 * Drop the credit card logos in a public dir, then fill this directory's _absolute_ location on the server
   in the '/lib/atos/param/pathfile' file
 
-* The '014295303911111' merchant\_id I use all the way here is the test merchant\_id, obviously, use you own.
+* The '014295303911111' merchant\_id I use all the way here is the test merchant\_id, obviously, use your own.
