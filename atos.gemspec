@@ -14,6 +14,4 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'rails'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'activesupport', '>=3.2.13'
 end
