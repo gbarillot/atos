@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class ExceptionHandlerTest < ActiveSupport::TestCase
+describe ExceptionHandler do #< ActiveSupport::TestCase
 
-  test "raise and exception when missing parameter merchant_id" do
-    assert_raise RuntimeError do
+  it "raises an exception when missing parameter merchant_id" do
+    err = ->{ 
       ExceptionHandler.validate_request_params({
         :merchant_i            => '',
         :customer_id            => 'YOUR_CUSTOMER_ID',
@@ -12,11 +12,11 @@ class ExceptionHandlerTest < ActiveSupport::TestCase
         :normal_return_url      => 'http://YOUR_SITE.com/NORMAL/RETURN/URL',
         :cancel_return_url      => 'http://YOUR_SITE.com/CANCEL/URL'
       })
-    end
+    }.must_raise RuntimeError
   end
 
-  test "raise and exception when missing parameter customer_id" do
-    assert_raise RuntimeError do
+  it "raises an exception when missing parameter customer_id" do
+    err = ->{ 
       ExceptionHandler.validate_request_params({
         :merchant_id             => '',
         :customer_i            => 'YOUR_CUSTOMER_ID',
@@ -25,11 +25,11 @@ class ExceptionHandlerTest < ActiveSupport::TestCase
         :normal_return_url      => 'http://YOUR_SITE.com/NORMAL/RETURN/URL',
         :cancel_return_url      => 'http://YOUR_SITE.com/CANCEL/URL'
       })
-    end
+    }.must_raise RuntimeError
   end
 
-  test "raise and exception when missing parameter amount" do
-    assert_raise RuntimeError do
+  it "raise and exception when missing parameter amount" do
+    err = ->{
       ExceptionHandler.validate_request_params({
         :merchant_id             => '',
         :customer_id            => 'YOUR_CUSTOMER_ID',
@@ -38,11 +38,11 @@ class ExceptionHandlerTest < ActiveSupport::TestCase
         :normal_return_url      => 'http://YOUR_SITE.com/NORMAL/RETURN/URL',
         :cancel_return_url      => 'http://YOUR_SITE.com/CANCEL/URL'
       })
-    end
+    }.must_raise RuntimeError
   end
 
-  test "raise and exception when missing parameter automatic_response_url" do
-    assert_raise RuntimeError do
+  it "raise and exception when missing parameter automatic_response_url" do
+    err = ->{
       ExceptionHandler.validate_request_params({
         :merchant_id             => '',
         :customer_id            => 'YOUR_CUSTOMER_ID',
@@ -51,11 +51,11 @@ class ExceptionHandlerTest < ActiveSupport::TestCase
         :normal_return_url      => 'http://YOUR_SITE.com/NORMAL/RETURN/URL',
         :cancel_return_url      => 'http://YOUR_SITE.com/CANCEL/URL'
       })
-    end
+    }.must_raise RuntimeError
   end
 
-  test "raise and exception when missing parameter normal_return_url" do
-    assert_raise RuntimeError do
+  it "raise and exception when missing parameter normal_return_url" do
+    err = ->{
       ExceptionHandler.validate_request_params({
         :merchat_id             => '',
         :customer_id            => 'YOUR_CUSTOMER_ID',
@@ -64,11 +64,11 @@ class ExceptionHandlerTest < ActiveSupport::TestCase
         :normal_return_ur      => 'http://YOUR_SITE.com/NORMAL/RETURN/URL',
         :cancel_return_url      => 'http://YOUR_SITE.com/CANCEL/URL'
       })
-    end
+    }.must_raise RuntimeError
   end
 
-  test "raise and exception when missing parameter cancel_return_url" do
-    assert_raise RuntimeError do
+  it "raise and exception when missing parameter cancel_return_url" do
+    err = ->{
       ExceptionHandler.validate_request_params({
         :merchat_id             => '',
         :customer_id            => 'YOUR_CUSTOMER_ID',
@@ -77,7 +77,7 @@ class ExceptionHandlerTest < ActiveSupport::TestCase
         :normal_return_url      => 'http://YOUR_SITE.com/NORMAL/RETURN/URL',
         :cancel_return_ur      => 'http://YOUR_SITE.com/CANCEL/URL'
       })
-    end
+    }.must_raise RuntimeError
   end
 
 end

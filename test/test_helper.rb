@@ -1,6 +1,6 @@
-require 'active_support'
-require 'active_support/test_case'
-require 'test/unit'
+require 'minitest/unit'
+require 'minitest/autorun'
+require 'minitest/pride'
 
 require 'rails'
 require 'atos'
