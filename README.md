@@ -5,7 +5,7 @@ Atos, a Ruby on Rails gateway for SIPS/ATOS french online payments API
 
 Installation
 ---
-As usual, add 
+Add this to your Gemfile (prefer the Github version over the RubyGem one for updates) 
 ```
 gem 'atos', :git => 'git@github.com:gbarillot/atos.git'
 ```
