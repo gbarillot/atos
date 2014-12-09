@@ -7,7 +7,7 @@ Installation
 ---
 As usual, add 
 ```
-gem 'atos'
+gem 'atos', :git => 'git@github.com:gbarillot/atos.git'
 ```
 then run bundle install
 
