@@ -22,13 +22,13 @@ class Atos
     ExceptionHandler.validate_request_params(datas)
     args = build_args(datas)     
 
-    ExceptionHandler.validate_binary_output(`#{@request_path} #{args}`)    
+    ExceptionHandler.validate_binary_output(:request, `#{@request_path} #{args}`)    
   end
 
   # Call the response binary using bank response
   def response(datas)
 
-    response = ExceptionHandler.validate_binary_output(`#{@response_path} pathfile=#{@pathfile_path} message=#{datas}`)
+    response = ExceptionHandler.validate_binary_output(:response, `#{@response_path} pathfile=#{@pathfile_path} message=#{datas}`)
 
     { 
       :code                   => response[1],
