@@ -19,7 +19,7 @@ class ExceptionHandler < StandardError
   end
   
   # Check if the request is ok
-  def self.validate_binary_output(datas)
+  def self.validate_binary_output(kind, datas)
     
     response = datas.split("!")
     
@@ -29,7 +29,7 @@ class ExceptionHandler < StandardError
       raise "SIPS/Atos error : binary file does not respond ! Check your 'request' binary path, default is 'Rails.root/lib/atos/bin'"
     when "0"      
       # API responds 'ok', return the content
-      return response
+      return kind == :response ? response : response[3]
     else
       # API binary responds an error, formated in a HTML table. Let's strip tags before showing the error message
       raise "SIPS/Atos API binary file outputs : #{response[2].gsub(/<\/?[^>]*>/, '')}" 
